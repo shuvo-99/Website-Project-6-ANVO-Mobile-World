@@ -1,33 +1,92 @@
 const searchPhone = () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
-  // console.log("yes");
+  
+  // clear data
   searchField.value = "";
-  const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-  fetch(url)
-    .then((res) => res.json())
-    .then((info) => displaySearchResult(info.data));
+  
+  // if search input is empty
+  if (searchText == ''){
+    const showError1 = document.getElementById("input-empty");
+    showError1.style.display = "block";
+    const showError2 = document.getElementById("phn-not-found");
+    showError2.style.display = "none";
+
+  }
+  else{
+    
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((info) => displaySearchResult(info.data));
+      
+    
+    showError.style.display = "none";
+
+  }
+  
 };
 
 const displaySearchResult = (data) => {
   const searchResult = document.getElementById("search-result");
-  data.forEach((phone) => {
-    // console.log(dat);
-    const div = document.createElement("div");
-    div.classList.add("col");
-    div.innerHTML = `
-    <div onclick='loadPhoneDetail("${phone.slug}")' class="card h-100">
-      <img src="${phone.image}" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">${phone.phone_name}</h5>
-        <p class="card-text">
-        ${phone.brand}
-        </p>
+  searchResult.textContent ='';
+  
+  // if phone is not found
+  // const showError = document.getElementById("phn-not-found");
+  // showError.style.display = "none";
+
+  if (data.length==0){
+    // console.log('Phone is not Found')
+    const showError2 = document.getElementById("phn-not-found");
+    showError2.style.display = "block";
+    const showError1 = document.getElementById("input-empty");
+    showError1.style.display = "none";
+
+  }
+  else{
+    const showError2 = document.getElementById("phn-not-found");
+    showError2.style.display = "none";
+    const showError1 = document.getElementById("input-empty");
+    showError1.style.display = "none";
+    data.forEach((phone) => {
+    
+      // console.log(dat);
+      const div = document.createElement("div");
+      div.classList.add("col");
+      div.innerHTML = `
+      <div  class="card h-100 w-75">
+        <img src="${phone.image}" class="card-img-top" alt="..." />
+        <div class="card-body ">
+          <h5 class="card-title">${phone.phone_name}</h5>
+          <p class="card-text">
+          ${phone.brand}
+          </p>
+          <a href="#" onclick='loadPhoneDetail("${phone.slug}")' class="btn btn-primary">Details</a>
+        </div>
       </div>
-    </div>
-    `;
-    searchResult.appendChild(div);
-  });
+      `;
+      searchResult.appendChild(div);
+    });
+  }
+  // data.forEach((phone) => {
+    
+  //   // console.log(dat);
+  //   const div = document.createElement("div");
+  //   div.classList.add("col");
+  //   div.innerHTML = `
+  //   <div  class="card h-100 w-75">
+  //     <img src="${phone.image}" class="card-img-top" alt="..." />
+  //     <div class="card-body ">
+  //       <h5 class="card-title">${phone.phone_name}</h5>
+  //       <p class="card-text">
+  //       ${phone.brand}
+  //       </p>
+  //       <a href="#" onclick='loadPhoneDetail("${phone.slug}")' class="btn btn-primary">Details</a>
+  //     </div>
+  //   </div>
+  //   `;
+  //   searchResult.appendChild(div);
+  // });
 };
 
 const loadPhoneDetail = (phoneID) => {
@@ -41,8 +100,9 @@ const loadPhoneDetail = (phoneID) => {
 };
 
 const displayPhoneDetail = (phone) => {
-  console.log(phone);
+  // console.log(phone);
   const phoneDetails = document.getElementById("phone-details");
+  phoneDetails.textContent = '';
   const div = document.createElement("div");
   div.classList.add("card");
   // const features = JSON.stringify(phone.mainFeatures);
