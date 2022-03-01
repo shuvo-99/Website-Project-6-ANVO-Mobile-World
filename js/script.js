@@ -46,11 +46,16 @@ const displayPhoneDetail = (phone) => {
   const div = document.createElement("div");
   div.classList.add("card");
   // const features = JSON.stringify(phone.mainFeatures);
+  if (phone.releaseDate == ''){
+    phone.releaseDate = 'Will be released soon' 
+
+  }
+  
   div.innerHTML = `
   <img src="${phone.image}" class="card-img-top" alt="..." />
   <div class="card-body">
     <h5 class="card-title">${phone.name}</h5>
-    <p class="card-text"> span${phone.brand}
+    <p class="card-text">${phone.brand}
     </p>
     
     <p class="card-text"> Storage: ${phone.mainFeatures.storage}
@@ -59,14 +64,9 @@ const displayPhoneDetail = (phone) => {
     </p>
     <p class="card-text"> Chipset: ${phone.mainFeatures.chipSet}
     </p>
-    <p class="card-text"> memory: ${phone.mainFeatures.memory}
+    <p class="card-text"> Memory: ${phone.mainFeatures.memory}
     </p>
-    ${if (phone.releaseDate == ''){
-
-    }
-    else{}}
-
-    <p class="card-text"> releaseDate: ${phone.releaseDate}
+    <p class="card-text"> Release Date: ${phone.releaseDate}
     </p>
     
   </div>
