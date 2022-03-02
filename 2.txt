@@ -4,9 +4,6 @@ const searchPhone = () => {
   
   // clear data
   searchField.value = "";
-  const phoneDetails = document.getElementById("phone-details");
-  phoneDetails.textContent = '';
-
   
   // if search input is empty
   if (searchText == ''){
@@ -21,8 +18,7 @@ const searchPhone = () => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
       .then((res) => res.json())
-      .then((info) => displaySearchResult(info.data.slice(0,20)));
-      
+      .then((info) => displaySearchResult(info.data));
     // showError.style.display = "none";
 
   }
@@ -106,10 +102,10 @@ const displayPhoneDetail = (phone) => {
   const div = document.createElement("div");
   div.classList.add("card");
   // const features = JSON.stringify(phone.mainFeatures);
-  // if (phone.releaseDate == ''){
-  //   phone.releaseDate = 'Will be released soon' 
+  if (phone.releaseDate == ''){
+    phone.releaseDate = 'Will be released soon' 
 
-  // }
+  }
   
   div.innerHTML = `
   <img src="${phone.image}" class="card-img-top" alt="..." />
@@ -117,7 +113,7 @@ const displayPhoneDetail = (phone) => {
     <h5 class="card-title">${phone.name}</h5>
     <p class="card-text">${phone.brand}
     </p>
-      
+    
     <p class="card-text"> Storage: ${phone.mainFeatures.storage}
     </p>
     <p class="card-text"> Display Size: ${phone.mainFeatures.displaySize}
@@ -126,11 +122,10 @@ const displayPhoneDetail = (phone) => {
     </p>
     <p class="card-text"> Memory: ${phone.mainFeatures.memory}
     </p>
-    <p class="card-text"> Release Date: ${phone.releaseDate ? phone.releaseDate : " Soon" }
+    <p class="card-text"> Release Date: ${phone.releaseDate}
     </p>
-      
+    
   </div>
   `;
   phoneDetails.appendChild(div);
-  
 };
