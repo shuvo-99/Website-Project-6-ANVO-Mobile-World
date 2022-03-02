@@ -110,6 +110,13 @@ const displayPhoneDetail = (phone) => {
   //   phone.releaseDate = 'Will be released soon' 
 
   // }
+  if (phone.mainFeatures.sensors == ''){
+    phone.mainFeatures.sensors = 'Not Found' 
+
+  }
+  
+  console.log(phone);
+
   
   div.innerHTML = `
   <img src="${phone.image}" class="card-img-top" alt="..." />
@@ -126,11 +133,45 @@ const displayPhoneDetail = (phone) => {
     </p>
     <p class="card-text"> Memory: ${phone.mainFeatures.memory}
     </p>
-    <p class="card-text"> Release Date: ${phone.releaseDate ? phone.releaseDate : " Soon" }
+    <p class="card-text"> Release Date: ${phone.releaseDate ? phone.releaseDate : "Will be released soon" }
     </p>
+    <p class="card-text"> Sensors: ${phone.mainFeatures.sensors}
+    </p>
+    <p class="card-text"> Others: ${ phone.others?phone.others :'Not Found'}
+    </p>
+    <p class="card-text"> WLAN: ${phone.others.WLAN ? phone.others.WLAN : 'Data not found' }
+    </p>
+    <p class="card-text"> Bluetooth: ${phone.others.Bluetooth ? phone.others.Bluetooth : 'Data not found' }
+    </p>
+    <p class="card-text"> GPS: ${phone.others.GPS ? phone.others.GPS : 'Data not found' }
+    </p>
+    <p class="card-text"> NFC: ${phone.others.NFC ? phone.others.NFC : 'Data not found' }
+    </p>
+    <p class="card-text"> Radio: ${phone.others.Radio ? phone.others.Radio : 'Data not found' }
+    </p>
+    <p class="card-text"> USB: ${phone.others.USB ? phone.others.USB : 'Data not found' }
+    </p>
+    
+    
       
   </div>
   `;
   phoneDetails.appendChild(div);
   
 };
+
+
+{/* <p class="card-text"> Storage: ${phone.others.WLAN}
+    </p>
+    <p class="card-text"> Others: ${phone.others.WLAN}
+    </p>
+    <p class="card-text"> Others: ${phone.others.Bluetooth}
+    </p>
+    <p class="card-text"> Others: ${phone.others.GPS}
+    </p>
+    <p class="card-text"> Others: ${phone.others.NFC}
+    </p>
+    <p class="card-text"> Others: ${phone.others.Radio}
+    </p>
+    <p class="card-text"> Others: ${phone.others.USB}
+    </p> */}
