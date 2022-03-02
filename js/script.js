@@ -14,10 +14,12 @@ const searchPhone = () => {
     showError1.style.display = "block";
     const showError2 = document.getElementById("phn-not-found");
     showError2.style.display = "none";
+    const searchResult = document.getElementById("search-result");
+    searchResult.textContent ='';
 
   }
   else{
-    
+    // load data
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
       .then((res) => res.json())
@@ -35,10 +37,12 @@ const displaySearchResult = (data) => {
 
   if (data.length==0){
     // show error
-    const showError2 = document.getElementById("phn-not-found");
-    showError2.style.display = "block";
     const showError1 = document.getElementById("input-empty");
     showError1.style.display = "none";
+    const showError2 = document.getElementById("phn-not-found");
+    showError2.style.display = "block";
+    
+    
 
   }
   else{
