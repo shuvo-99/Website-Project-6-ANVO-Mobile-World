@@ -110,34 +110,112 @@ const displayPhoneDetail = (phone) => {
   //   phone.releaseDate = 'Will be released soon' 
 
   // }
+
   if (phone.mainFeatures.sensors == ''){
     phone.mainFeatures.sensors = 'Not Found' 
 
   }
-  
   console.log(phone);
+  // console.log(phone.hasOwnProperty(mainFeatures))
+  'others' in phone ;
+  if (phone.others !== undefined){
+    // phone.mainFeatures.sensors = 'Not Found'
+    console.log('yes present') 
+    div.innerHTML = `
+    <img src="${phone.image}" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title font-size-phn-name">${phone.name}</h5>
+      <p class="card-text bold font-size-brand">${phone.brand}
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Storage: </span>${phone.mainFeatures.storage}
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Display Size: </span>${phone.mainFeatures.displaySize}
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Chipset: </span>${phone.mainFeatures.chipSet}
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Memory: </span>${phone.mainFeatures.memory}
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Release Date: </span>${phone.releaseDate ? phone.releaseDate : "Will be released soon" }
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Sensors: </span>${phone.mainFeatures.sensors}
+      </p><hr>
+      <p class="card-text fs-bold"> <span class='light-bold'>Others: </span>
+      </p>
+      <p class="card-text"> <span class='light-bold'>WLAN: </span>${phone.others.WLAN ? phone.others.WLAN : 'Data not found' }
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Bluetooth: </span>${phone.others.Bluetooth ? phone.others.Bluetooth : 'Data not found' }
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>GPS: </span>${phone.others.GPS ? phone.others.GPS : 'Data not found' }
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>NFC: </span>${phone.others.NFC ? phone.others.NFC : 'Data not found' }
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Radio: </span>${phone.others.Radio ? phone.others.Radio : 'Data not found' }
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>USB: </span>${phone.others.USB ? phone.others.USB : 'Data not found' }
+      </p>
+         
+    </div>
+    `;
+    phoneDetails.appendChild(div);
+  }
 
-  
-  div.innerHTML = `
-  <img src="${phone.image}" class="card-img-top" alt="..." />
-  <div class="card-body">
-    <h5 class="card-title">${phone.name}</h5>
-    <p class="card-text">${phone.brand}
-    </p>
+  else{
+    console.log('not present')
+    div.innerHTML = `
+    <img src="${phone.image}" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title font-size-phn-name">${phone.name}</h5>
+      <p class="card-text bold font-size-brand ">${phone.brand}
+      </p><hr>  
+      <p class="card-text"> <span class='light-bold'>Storage: </span> ${phone.mainFeatures.storage}
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Display Size: </span>${phone.mainFeatures.displaySize}
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Chipset: </span>${phone.mainFeatures.chipSet}
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Memory: </span>${phone.mainFeatures.memory}
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Release Date: </span>${phone.releaseDate ? phone.releaseDate : "Will be released soon" }
+      </p><hr>
+      <p class="card-text"> <span class='light-bold'>Sensors: </span>${phone.mainFeatures.sensors}
+      </p>
+         
+    </div>
+    `;
+    phoneDetails.appendChild(div);
+
+  }  
+  // div.innerHTML = `
+  // <img src="${phone.image}" class="card-img-top" alt="..." />
+  // <div class="card-body">
+  //   <h5 class="card-title">${phone.name}</h5>
+  //   <p class="card-text">${phone.brand}
+  //   </p>
       
-    <p class="card-text"> Storage: ${phone.mainFeatures.storage}
-    </p>
-    <p class="card-text"> Display Size: ${phone.mainFeatures.displaySize}
-    </p>
-    <p class="card-text"> Chipset: ${phone.mainFeatures.chipSet}
-    </p>
-    <p class="card-text"> Memory: ${phone.mainFeatures.memory}
-    </p>
-    <p class="card-text"> Release Date: ${phone.releaseDate ? phone.releaseDate : "Will be released soon" }
-    </p>
-    <p class="card-text"> Sensors: ${phone.mainFeatures.sensors}
-    </p>
-    <p class="card-text"> Others: ${ phone.others?phone.others :'Not Found'}
+  //   <p class="card-text"> Storage: ${phone.mainFeatures.storage}
+  //   </p>
+  //   <p class="card-text"> Display Size: ${phone.mainFeatures.displaySize}
+  //   </p>
+  //   <p class="card-text"> Chipset: ${phone.mainFeatures.chipSet}
+  //   </p>
+  //   <p class="card-text"> Memory: ${phone.mainFeatures.memory}
+  //   </p>
+  //   <p class="card-text"> Release Date: ${phone.releaseDate ? phone.releaseDate : "Will be released soon" }
+  //   </p>
+  //   <p class="card-text"> Sensors: ${phone.mainFeatures.sensors}
+  //   </p>
+    
+    
+    
+      
+  // </div>
+  // `;
+  // phoneDetails.appendChild(div);
+  
+};
+
+
+{/* <p class="card-text"> Others: ${ phone.others?phone.others :'Not Found'}
     </p>
     <p class="card-text"> WLAN: ${phone.others.WLAN ? phone.others.WLAN : 'Data not found' }
     </p>
@@ -150,28 +228,4 @@ const displayPhoneDetail = (phone) => {
     <p class="card-text"> Radio: ${phone.others.Radio ? phone.others.Radio : 'Data not found' }
     </p>
     <p class="card-text"> USB: ${phone.others.USB ? phone.others.USB : 'Data not found' }
-    </p>
-    
-    
-      
-  </div>
-  `;
-  phoneDetails.appendChild(div);
-  
-};
-
-
-{/* <p class="card-text"> Storage: ${phone.others.WLAN}
-    </p>
-    <p class="card-text"> Others: ${phone.others.WLAN}
-    </p>
-    <p class="card-text"> Others: ${phone.others.Bluetooth}
-    </p>
-    <p class="card-text"> Others: ${phone.others.GPS}
-    </p>
-    <p class="card-text"> Others: ${phone.others.NFC}
-    </p>
-    <p class="card-text"> Others: ${phone.others.Radio}
-    </p>
-    <p class="card-text"> Others: ${phone.others.USB}
     </p> */}
